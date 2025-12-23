@@ -8,12 +8,10 @@ spec:
   # or maybe external users to connect to (eg browser)
   selector:
     app: webapp
-    release: "0-5"
-  
   # which ports do we expose through this service
   # We accept traffic on port 80 ; and we forward that traffic to port 80 on the container
   ports:
-    - name: http # this is just a helpful label o what traffic this is going to be 
+    - name: http # this is just a helpful label o what traffic this is going to be
       port: 80
       targetPort: 80 # usually this defaults to the "port" when not specified ie 80:80
       # Only for services of type NodePort; The port, our webapp is going to be accessible thorugh the browser
@@ -22,8 +20,7 @@ spec:
 
   type: NodePort
 
---- 
-
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -37,5 +34,3 @@ spec:
       port: 8161
       nodePort: 30010
   type: NodePort
-
-

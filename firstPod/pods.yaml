@@ -1,33 +1,24 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: ReplicaSet
 metadata:
   name: webapp
-  labels:
-    app: webapp
-    release: "0"
 spec:
-  containers:
-    - name: webapp
-      image: richardchesterwood/k8s-fleetman-webapp-angular:release0
-
+  selector:
+    matchLabels:
+      app: webapp # going to manage any pod where the label "app:webapp" is set IMPORTANT: for service, the pod label is relevant
+  replicas: 2
+  template: # templates for the pod
+    metadata:
+      # name: webapp -> This is not needed here. Name is manged by the ReplicaSet
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
 
 # document separator - yaml specific
---- 
-
-apiVersion: v1
-kind: Pod
-metadata:
-  name: webapp-release-0.5
-  labels:
-    app: webapp
-    release: "0-5"
-spec:
-  containers:
-    - name: webapp
-      image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
-
 ---
-
 apiVersion: v1
 kind: Pod
 metadata:
