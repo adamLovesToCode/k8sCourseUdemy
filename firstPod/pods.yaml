@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: webapp
 spec:
-  minReadySeconds: 30
+  # minReadySeconds: 30
   selector:
     matchLabels:
       app: webapp # going to manage any pod where the label "app:webapp" is set IMPORTANT: for service, the pod label is relevant
